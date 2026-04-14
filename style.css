@@ -1,0 +1,400 @@
+:root {
+  --bg-start: #020617;
+  --bg-mid: #1e3a8a;
+  --bg-end: #0c4a6e;
+  --card-bg: rgba(255, 255, 255, 0.14);
+  --card-border: rgba(255, 255, 255, 0.35);
+  --text-main: #f8fafc;
+  --text-soft: #dbeafe;
+  --accent: #38bdf8;
+  --danger: #f43f5e;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--text-main);
+  background: radial-gradient(circle at 20% 20%, #1e40af, transparent 44%),
+    linear-gradient(130deg, var(--bg-start), var(--bg-mid), var(--bg-end));
+}
+
+.ticker-bar {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(2, 6, 23, 0.55);
+  backdrop-filter: blur(10px);
+}
+
+.ticker-label {
+  flex-shrink: 0;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  background: linear-gradient(100deg, #f97316, #ef4444);
+  color: #fff;
+  border-radius: 999px;
+  padding: 6px 10px;
+}
+
+.ticker-window {
+  overflow: hidden;
+  width: 100%;
+}
+
+.ticker-text {
+  white-space: nowrap;
+  display: inline-block;
+  font-weight: 600;
+  color: #c7f0ff;
+  padding-left: 100%;
+  animation: ticker-slide 12s linear infinite;
+}
+
+@keyframes ticker-slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-150%);
+  }
+}
+
+.app-shell {
+  min-height: calc(100vh - 48px);
+  padding: 24px 28px 32px;
+}
+
+.dashboard-layout {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(250px, 320px) minmax(320px, 520px);
+  justify-content: center;
+  gap: 22px;
+  align-items: start;
+}
+
+.poster-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.poster-card {
+  border-radius: 18px;
+  padding: 18px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.22);
+  animation: float-card 4.5s ease-in-out infinite;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+
+.poster-card:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.poster-card:nth-child(3) {
+  animation-delay: 0.8s;
+}
+
+.poster-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(125, 211, 252, 0.65);
+  box-shadow: 0 18px 35px rgba(56, 189, 248, 0.3);
+}
+
+.poster-icon {
+  display: inline-block;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.poster-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.poster-card p {
+  color: var(--text-soft);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.sunny {
+  background: linear-gradient(140deg, rgba(250, 204, 21, 0.25), rgba(255, 255, 255, 0.1));
+}
+
+.rainy {
+  background: linear-gradient(140deg, rgba(59, 130, 246, 0.26), rgba(255, 255, 255, 0.1));
+}
+
+.storm {
+  background: linear-gradient(140deg, rgba(147, 51, 234, 0.28), rgba(255, 255, 255, 0.1));
+}
+
+@keyframes float-card {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.weather-card {
+  width: min(95vw, 520px);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  padding: 28px 28px 26px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 20px 45px rgba(2, 6, 23, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.weather-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 25px 50px rgba(2, 6, 23, 0.4);
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  color: var(--text-soft);
+  margin-bottom: 20px;
+}
+
+.search-row {
+  display: flex;
+  gap: 10px;
+}
+
+.search-note {
+  margin-top: 10px;
+  color: #bfdbfe;
+  font-size: 0.82rem;
+}
+
+#city-input {
+  flex: 1;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 0.97rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#city-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+}
+
+#search-btn {
+  border: none;
+  border-radius: 12px;
+  background: #0ea5e9;
+  color: #fff;
+  padding: 12px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+#search-btn:hover {
+  background: #0284c7;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(2, 132, 199, 0.35);
+}
+
+#search-btn:active {
+  transform: translateY(0);
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+  font-size: 0.94rem;
+  color: var(--text-soft);
+}
+
+.loader-dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid rgba(56, 189, 248, 0.35);
+  border-top-color: #38bdf8;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error-box {
+  margin-top: 14px;
+  padding: 12px 13px;
+  border-radius: 12px;
+  background: rgba(244, 63, 94, 0.2);
+  border: 1px solid rgba(251, 113, 133, 0.5);
+  color: #ffe4e6;
+  font-weight: 500;
+}
+
+.result {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.result-header h2 {
+  font-size: 1.4rem;
+}
+
+.badge {
+  background: rgba(56, 189, 248, 0.23);
+  border: 1px solid rgba(125, 211, 252, 0.5);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 0.84rem;
+}
+
+.temp-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+#temperature {
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+
+#weather-icon {
+  width: 76px;
+  height: 76px;
+}
+
+.meta-grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.meta-item {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 12px;
+  transition: background 0.2s ease;
+}
+
+.meta-item:hover {
+  background: rgba(255, 255, 255, 0.19);
+}
+
+.meta-item span {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  margin-bottom: 6px;
+}
+
+.meta-item strong {
+  font-size: 1.05rem;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .ticker-bar {
+    height: 44px;
+    padding: 0 12px;
+  }
+
+  .ticker-label {
+    font-size: 0.68rem;
+    padding: 5px 8px;
+  }
+
+  .app-shell {
+    min-height: calc(100vh - 44px);
+    padding: 14px;
+  }
+
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .poster-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .weather-card {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  .search-row {
+    flex-direction: column;
+  }
+
+  #search-btn {
+    width: 100%;
+  }
+
+  .meta-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 900px) {
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+    max-width: 760px;
+  }
+
+  .poster-panel {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .poster-card {
+    min-height: 168px;
+  }
+}
